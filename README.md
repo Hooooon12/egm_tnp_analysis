@@ -1,5 +1,6 @@
 # egm_tnp_analysis
-
+# This is modified version of branch egm_tnp_CleanedCodeForUL_17March2020 (6a4f09f) for dilepton HNL study
+# histUtils.pyx taken from the main branch (32d5833)
 
 ## Install stable branch
 
@@ -7,7 +8,8 @@
 
 > cd egm_tnp_analysis
 
-> source etc/scripts/setupUL.sh (need ROOT>6.10)
+#> source etc/scripts/setupUL.sh (need ROOT>6.10)
+> source setup.sh (To use this tool in tamsa server, not lxplus, and also to read SKFlat Skim)
 
 > make
 

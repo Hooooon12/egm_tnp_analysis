@@ -12,10 +12,36 @@ eosLegacyReReco2016 = '/eos/cms/store/group/phys_egamma/swmukher/egmNtuple_V2ID_
 eosReReco2017 = '/eos/cms/store/group/phys_egamma/swmukher/ntuple_2017_v2/'
 eosReReco2018 = '/eos/cms/store/group/phys_egamma/swmukher/rereco2018/ECAL_NOISE/'
 #eosUL2017 = '/eos/cms/store/group/phys_egamma/asroy/Tag-and-Probe_Tree/UL2017/'
-eosUL2017 = '/eos/cms/store/group/phys_egamma/asroy/Tag-and-Probe_Tree/UL2017_MINIAOD_Nm1/'
+#eosUL2017 = '/eos/cms/store/group/phys_egamma/asroy/Tag-and-Probe_Tree/UL2017_MINIAOD_Nm1/'
+eosUL2017 = '/data6/Users/jihkim/tnp_tamsa/POG_tree/2017/'
 eosUL2018 = '/eos/cms/store/group/phys_egamma/asroy/Tag-and-Probe_Tree/UL2018_MINIAOD_Nm1/'
 eosUL2016 = '/eos/cms/store/group/phys_egamma/akapoor/Tag-and-Probe_Tree/UL2016_ntuples/'
 
+SKFlat_data_2017 = '/gv0/DATA/SKFlat/Run2UltraLegacy_v3/2017/DATA_SkimTree_EGammaTnP/SingleElectron/'
+SKFlat_mg_2017 = '/gv0/DATA/SKFlat/Run2UltraLegacy_v3/2017/MC_SkimTree_EGammaTnP/DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8/2024_08_27_230238/'
+SKFlat_amc_2017 = '/gv0/DATA/SKFlat/Run2UltraLegacy_v3/2017/MC_SkimTree_EGammaTnP/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/2024_08_27_232337/'
+
+HNL2017 = { #JH
+    ### MiniAOD TnP for IDs scale factors
+    'DY_madgraph'              : tnpSample('DY_madgraph',
+                                       SKFlat_mg_2017 + 'SKFlatNtuple_2017_MC_*.root ',
+                                       #SKFlat_amc_2017 + 'SKFlatNtuple_2017_MC_*.root ', # to test if amc is ok with createHist
+                                       isMC = True, nEvts =  -1 ),
+#    'DY_amcatnlo'                 : tnpSample('DY_amcatnlo',
+#                                       eosUL2017 + 'DYJetsToLLM50amcatnloFXFX.root',
+#                                       isMC = True, nEvts =  -1 ),
+    'DY_amcatnloext'                 : tnpSample('DY_amcatnloext',
+                                       SKFlat_amc_2017 + 'SKFlatNtuple_2017_MC_*.root',
+                                       isMC = True, nEvts =  -1 ),
+
+
+    'data_Run2017B' : tnpSample('data_Run2017B' , SKFlat_data_2017 + 'periodB/2024_08_26_071856/SKFlatNtuple_2017_DATA_*.root' , lumi = 4.793961427),
+    'data_Run2017C' : tnpSample('data_Run2017C' , SKFlat_data_2017 + 'periodC/2024_08_26_071856/SKFlatNtuple_2017_DATA_*.root' , lumi = 9.631214821 ),
+    'data_Run2017D' : tnpSample('data_Run2017D' , SKFlat_data_2017 + 'periodD/2024_08_26_071856/SKFlatNtuple_2017_DATA_*.root' , lumi = 4.247682053 ),
+    'data_Run2017E' : tnpSample('data_Run2017E' , SKFlat_data_2017 + 'periodE/2024_08_26_071856/SKFlatNtuple_2017_DATA_*.root' , lumi = 9.313642402 ),
+    'data_Run2017F' : tnpSample('data_Run2017F' , SKFlat_data_2017 + 'periodF/2024_08_26_071856/SKFlatNtuple_2017_DATA_*.root' , lumi = 13.510934811),
+
+    }
 
 
 ReReco2017 = {
@@ -97,6 +123,7 @@ UL2017 = {
                                        isMC = True, nEvts =  -1 ),
 
 
+    'data_Run2017'  : tnpSample('data_Run2017'  , eosUL2017 + 'SingleEle_RunBCDEF.root' , lumi = 41.7), #JH
     'data_Run2017B' : tnpSample('data_Run2017B' , eosUL2017 + 'SingleEle_RunB.root' , lumi = 4.793961427),
     'data_Run2017C' : tnpSample('data_Run2017C' , eosUL2017 + 'SingleEle_RunC.root' , lumi = 9.631214821 ),
     'data_Run2017D' : tnpSample('data_Run2017D' , eosUL2017 + 'SingleEle_RunD.root' , lumi = 4.247682053 ),

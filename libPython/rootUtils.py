@@ -2,6 +2,7 @@ import ROOT as rt
 import math
 from fitUtils import *
 #from fitSimultaneousUtils import *
+from ctypes import c_double #JH
 
 
 def histPlotter( filename, tnpBin, plotDir ):
@@ -36,10 +37,14 @@ def getAllEffi( info, bindef ):
         #bin2 = hP.GetXaxis().GetNbins()
         bin1 = 11
         bin2 = 70
-        eP = rt.Double(-1.0)
-        eF = rt.Double(-1.0)
+        #eP = rt.Double_t(-1)
+        #eF = rt.Double_t(-1) #JH : https://root-forum.cern.ch/t/issue-with-using-integralanderror-with-pyroot/53182/3 why THIS SIMPLE SOLUTION doesn't work?
+        eP = c_double(-1)
+        eF = c_double(-1)#JH 
         nP = hP.IntegralAndError(bin1,bin2,eP)
         nF = hF.IntegralAndError(bin1,bin2,eF)
+        eP = eP.value
+        eF = eF.value
 
         effis['mcNominal'] = computeEffi(nP,nF,eP,eF)
         rootfile.Close()
@@ -53,10 +58,12 @@ def getAllEffi( info, bindef ):
       #  bin2 = hP.GetXaxis().GetNbins()
         bin1 = 11
         bin2 = 70
-        eP = rt.Double(-1.0)
-        eF = rt.Double(-1.0)
+        eP = c_double(-1)
+        eF = c_double(-1)
         nP = hP.IntegralAndError(bin1,bin2,eP)
         nF = hF.IntegralAndError(bin1,bin2,eF)
+        eP = eP.value
+        eF = eF.value #JH
 
         effis['tagSel'] = computeEffi(nP,nF,eP,eF)
         rootfile.Close()
@@ -70,10 +77,12 @@ def getAllEffi( info, bindef ):
         #bin2 = hP.GetXaxis().GetNbins()
         bin1 = 11
         bin2 = 70
-        eP = rt.Double(-1.0)
-        eF = rt.Double(-1.0)
+        eP = c_double(-1)
+        eF = c_double(-1)
         nP = hP.IntegralAndError(bin1,bin2,eP)
         nF = hF.IntegralAndError(bin1,bin2,eF)
+        eP = eP.value
+        eF = eF.value #JH
 
         effis['mcAlt'] = computeEffi(nP,nF,eP,eF)
         rootfile.Close()
