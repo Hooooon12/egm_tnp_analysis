@@ -24,7 +24,13 @@ flags = {
 
 #baseOutDir = 'results/UL2017_HNL/tnpEleID/' #JH : This used POG trees as the input
 #baseOutDir = 'results/UL2017_HNL_SKFlat/tnpEleID/' #JH : This will use our tree from SkimTree_EGamma
-baseOutDir = 'results/UL2017_HNL_SKFlat_TrigCut/tnpEleID/' #JH : This will use our tree from SkimTree_EGamma
+#baseOutDir = 'results/UL2017_HNL_SKFlat_TrigCut/tnpEleID/' #JH : This will use our tree from SkimTree_EGamma
+#baseOutDir = 'results/UL2017_NewTree_HNL_SKFlat_TrigCut/tnpEleID/' #JH : This will use our tree from SkimTree_EGamma_HEEP
+#baseOutDir = 'results/UL2017_OldTree_HNL_SKFlat_TrigCut/tnpEleID/' #JH : Data from SkimTree_Egamma, mc from SkimTree_Egamma_HEEP
+#baseOutDir = 'results/UL2017_OldDataMCTree_HNL_SKFlat_TrigCut/tnpEleID/' #JH : Data, mc from Skimtree_EGamma
+#baseOutDir = 'results/UL2017_NewDataOldMCTree_HNL_SKFlat_TrigCut/tnpEleID/' #JH : Data from Skimtree_EGamma_HEEP, MC from Skintree_EGamma
+#baseOutDir = 'results/UL2017_NewDataOldMCTree_HNL_SKFlat_TrigCut_EtaCut/tnpEleID/' #JH : Data from Skimtree_EGamma_HEEP, MC from Skintree_EGamma, trigger cut to low pt, and fix eta cut referring to : https://github.com/swagata87/EgammaAnalysis-TnPTreeProducer/blob/Nm1_UL_106X/python/TnPTreeProducer_cfg.py#L117, later add TightId to tag see https://github.com/swagata87/EgammaAnalysis-TnPTreeProducer/blob/Nm1_UL_106X/python/egmElectronIDModules_cff.py#L307-L312
+baseOutDir = 'results/UL2017_NewDataNewMCTree_HNL_SKFlat_TrigCut_240919/tnpEleID/' #JH : Data from Skimtree_EGamma_HEEP, MC from Skintree_EGamma, trigger cut to low pt, and finally matched to https://github.com/swagata87/EgammaAnalysis-TnPTreeProducer/blob/Nm1_UL_106X/python/TnPTreeProducer_cfg.py
 
 #############################################################
 ########## samples definition  - preparing the samples
@@ -104,8 +110,7 @@ biningDef = [
 ########## Cuts definition for all samples
 #############################################################
 ### cut
-#cutBase   = 'tag_Ele_pt > 35 && abs(tag_sc_eta) < 2.17 && el_q*tag_Ele_q < 0'
-cutBase   = 'tag_Ele_pt > 35 && abs(tag_sc_eta) < 2.17 && el_q*tag_Ele_q < 0  && tag_passHltEle32DoubleEGWPTightGsf && tag_passEGL1SingleEGOr' #JH : SKFlat tree setting
+cutBase   = 'tag_Ele_pt > 35 && abs(tag_sc_eta) < 2.17 && el_q*tag_Ele_q < 0'
 
 # can add addtionnal cuts for some bins (first check bin number using tnpEGM --checkBins)
 #LS: we removed the met cuts cause JEC not ready for UL2017

@@ -21,25 +21,36 @@ SKFlat_data_2017 = '/gv0/DATA/SKFlat/Run2UltraLegacy_v3/2017/DATA_SkimTree_EGamm
 SKFlat_mg_2017 = '/gv0/DATA/SKFlat/Run2UltraLegacy_v3/2017/MC_SkimTree_EGammaTnP/DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8/2024_08_27_230238/'
 SKFlat_amc_2017 = '/gv0/DATA/SKFlat/Run2UltraLegacy_v3/2017/MC_SkimTree_EGammaTnP/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/2024_08_27_232337/'
 
+SKFlat_new_data_2017 = '/gv0/DATA/SKFlat/Run2UltraLegacy_v3/2017/DATA_SkimTree_EGammaTnP_HEEP/SingleElectron/'
+SKFlat_new_mg_2017 = '/gv0/DATA/SKFlat/Run2UltraLegacy_v3/2017/MC_SkimTree_EGammaTnP_HEEP/DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8/2024_09_19_033533/'
+SKFlat_new_amc_2017 = '/gv0/DATA/SKFlat/Run2UltraLegacy_v3/2018/MC_SkimTree_EGammaTnP_HEEP/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/2024_09_19_033533/'
+
 HNL2017 = { #JH
     ### MiniAOD TnP for IDs scale factors
     'DY_madgraph'              : tnpSample('DY_madgraph',
-                                       SKFlat_mg_2017 + 'SKFlatNtuple_2017_MC_*.root ',
+                                       #SKFlat_mg_2017 + 'SKFlatNtuple_2017_MC_*.root ',
+                                       SKFlat_new_mg_2017 + 'SKFlatNtuple_2017_MC_*.root ',
                                        #SKFlat_amc_2017 + 'SKFlatNtuple_2017_MC_*.root ', # to test if amc is ok with createHist
                                        isMC = True, nEvts =  -1 ),
 #    'DY_amcatnlo'                 : tnpSample('DY_amcatnlo',
 #                                       eosUL2017 + 'DYJetsToLLM50amcatnloFXFX.root',
 #                                       isMC = True, nEvts =  -1 ),
     'DY_amcatnloext'                 : tnpSample('DY_amcatnloext',
-                                       SKFlat_amc_2017 + 'SKFlatNtuple_2017_MC_*.root',
+                                       #SKFlat_amc_2017 + 'SKFlatNtuple_2017_MC_*.root',
+                                       SKFlat_new_amc_2017 + 'SKFlatNtuple_2017_MC_*.root',
                                        isMC = True, nEvts =  -1 ),
 
 
-    'data_Run2017B' : tnpSample('data_Run2017B' , SKFlat_data_2017 + 'periodB/2024_08_26_071856/SKFlatNtuple_2017_DATA_*.root' , lumi = 4.793961427),
-    'data_Run2017C' : tnpSample('data_Run2017C' , SKFlat_data_2017 + 'periodC/2024_08_26_071856/SKFlatNtuple_2017_DATA_*.root' , lumi = 9.631214821 ),
-    'data_Run2017D' : tnpSample('data_Run2017D' , SKFlat_data_2017 + 'periodD/2024_08_26_071856/SKFlatNtuple_2017_DATA_*.root' , lumi = 4.247682053 ),
-    'data_Run2017E' : tnpSample('data_Run2017E' , SKFlat_data_2017 + 'periodE/2024_08_26_071856/SKFlatNtuple_2017_DATA_*.root' , lumi = 9.313642402 ),
-    'data_Run2017F' : tnpSample('data_Run2017F' , SKFlat_data_2017 + 'periodF/2024_08_26_071856/SKFlatNtuple_2017_DATA_*.root' , lumi = 13.510934811),
+    #'data_Run2017B' : tnpSample('data_Run2017B' , SKFlat_data_2017 + 'periodB/2024_08_26_071856/SKFlatNtuple_2017_DATA_*.root' , lumi = 4.793961427),
+    #'data_Run2017C' : tnpSample('data_Run2017C' , SKFlat_data_2017 + 'periodC/2024_08_26_071856/SKFlatNtuple_2017_DATA_*.root' , lumi = 9.631214821 ),
+    #'data_Run2017D' : tnpSample('data_Run2017D' , SKFlat_data_2017 + 'periodD/2024_08_26_071856/SKFlatNtuple_2017_DATA_*.root' , lumi = 4.247682053 ),
+    #'data_Run2017E' : tnpSample('data_Run2017E' , SKFlat_data_2017 + 'periodE/2024_08_26_071856/SKFlatNtuple_2017_DATA_*.root' , lumi = 9.313642402 ),
+    #'data_Run2017F' : tnpSample('data_Run2017F' , SKFlat_data_2017 + 'periodF/2024_08_26_071856/SKFlatNtuple_2017_DATA_*.root' , lumi = 13.510934811),
+    'data_Run2017B' : tnpSample('data_Run2017B' , SKFlat_new_data_2017 + 'periodB/2024_09_19_033533/SKFlatNtuple_2017_DATA_*.root' , lumi = 4.793961427),
+    'data_Run2017C' : tnpSample('data_Run2017C' , SKFlat_new_data_2017 + 'periodC/2024_09_19_033533/SKFlatNtuple_2017_DATA_*.root' , lumi = 9.631214821 ),
+    'data_Run2017D' : tnpSample('data_Run2017D' , SKFlat_new_data_2017 + 'periodD/2024_09_19_033533/SKFlatNtuple_2017_DATA_*.root' , lumi = 4.247682053 ),
+    'data_Run2017E' : tnpSample('data_Run2017E' , SKFlat_new_data_2017 + 'periodE/2024_09_19_033533/SKFlatNtuple_2017_DATA_*.root' , lumi = 9.313642402 ),
+    'data_Run2017F' : tnpSample('data_Run2017F' , SKFlat_new_data_2017 + 'periodF/2024_09_19_033533/SKFlatNtuple_2017_DATA_*.root' , lumi = 13.510934811),
 
     }
 

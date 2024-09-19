@@ -24,8 +24,8 @@ for era in args.eras:
     with open(pwd+"/log/runHNL"+era+"_"+flag+".sh",'w') as runfile:
       runfile.write("#!/bin/bash\n")
       runfile.write("pushd "+pwd+"\n")
-      #runfile.write("python tnpEGM_fitter.py etc/config/settings_ele_HNL"+era+".py --flag "+flag+" --checkBins\n"             ) 
-      #runfile.write("python tnpEGM_fitter.py etc/config/settings_ele_HNL"+era+".py --flag "+flag+" --createBins\n"            )     
+      runfile.write("python tnpEGM_fitter.py etc/config/settings_ele_HNL"+era+".py --flag "+flag+" --checkBins\n"             ) 
+      runfile.write("python tnpEGM_fitter.py etc/config/settings_ele_HNL"+era+".py --flag "+flag+" --createBins\n"            )     
       runfile.write("python tnpEGM_fitter.py etc/config/settings_ele_HNL"+era+".py --flag "+flag+" --createHists\n"           )     
       #runfile.write("python tnpEGM_fitter.py etc/config/settings_ele_HNL"+era+".py --flag "+flag+" --doFit\n"                 )        
       #runfile.write("python tnpEGM_fitter.py etc/config/settings_ele_HNL"+era+".py --flag "+flag+" --doFit --mcSig --altSig\n")   
