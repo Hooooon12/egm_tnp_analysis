@@ -160,6 +160,9 @@ class efficiencyList:
 
                     if effMinus is None:
                         print " ---- efficiencyList: I did not find -eta bin!!!"
+                        averageData = effPlus.effData #JH
+                        averageMC   = effPlus.effMC
+                        self.effList[ptBin][etaBin].combineSyst(averageData,averageMC) #JH : efficiency.combineSyst should be called here, so that efficiency.systCombined can be defined. In the original code, if you have no negative bins (say absEta) then efficiency.combineSyst will be never called and it crashes complaining there is no syst uncert. (efficiency.systCombined)
                         
                     else:                        
                         averageData = (effPlus.effData + effMinus.effData)/2.
@@ -186,7 +189,7 @@ class efficiencyList:
                         effMinus =  self.effList[ptBin][etaBinMinus] 
 
                     if effMinus is None:
-                        self.effList[ptBin][etaBinMinus] = effPlus
+                        #self.effList[ptBin][etaBinMinus] = effPlus #JH : remove negative eta bin for HEEP binning
                         print " ---- efficiencyList: I did not find -eta bin!!!"
                     else:
                         #### fix statistical errors if needed
@@ -288,6 +291,9 @@ class efficiencyList:
                         else:                        
                             averageMC   = (effPlus.effMC   + effMinus.effMC  )/2.
                         ### so this is h2D bin is inside the bining used by e/gamma POG
+                        if (etaBin[0]==-1.566 or etaBin[0]==1.444): #JH
+                          self.effList[ptBin][etaBin].effMC = 1.
+                          averageMC = 1. #JH : to avoid zero division with gaps
                         h2.SetBinContent(ix,iy, self.effList[ptBin][etaBin].effData      / self.effList[ptBin][etaBin].effMC)
                         h2.SetBinError  (ix,iy, self.effList[ptBin][etaBin].systCombined / averageMC )
                         if onlyError   == 0 :
@@ -403,10 +409,16 @@ class efficiencyList:
                     listOfGraphs[ptBin] = []
                 effAverage = self.effList[ptBin][etaBin]
                 aValue  = effAverage.effData
-                anError = effAverage.systCombined 
+                anError = effAverage.systCombined #JH : This will complain that efficiency.systCombined has not defined with negative eta bins if you don't fix efficiencyList.combineSyst
                 if typeGR == 1:
-                    aValue  = effAverage.effData      / effAverage.effMC
-                    anError = effAverage.systCombined / effAverage.effMC  
+                    #aValue  = effAverage.effData      / effAverage.effMC
+                    #anError = effAverage.systCombined / effAverage.effMC
+                    if (etaBin[0]==-1.566 or etaBin[0]==1.444): #JH
+                      aValue  = 1.
+                      anError = 1.
+                    else:
+                      aValue  = effAverage.effData      / effAverage.effMC
+                      anError = effAverage.systCombined / effAverage.effMC #JH
                 if typeGR == -1:
                     aValue  = effAverage.effMC
                     anError = 0#effAverage.errEffMC

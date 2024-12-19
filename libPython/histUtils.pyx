@@ -139,15 +139,28 @@ def makePassFailHistograms( sample, flag, bindef, var ):
 
     print("Starting event loop to fill histograms..")
 
+    #cdef double JH_weight #JH : the log complain it should be double
+    #tree.SetBranchAddress("weights_2017_runBCDEF.totWeight",&JH_weight) # https://root.cern.ch/doc/master/classTTree.html#a011d362261b694ee7dd780bad21f030b
+    #cdef float tag_Ele_pt #JH
+    #tree.SetBranchAddress("tag_Ele_pt",&tag_Ele_pt)
     for index in range(nevts):
         if index % frac_of_nevts == 0:
             print outcount, "%"
             outcount = outcount + 5
 
         tree.GetEntry(index)
+        #if index % frac_of_nevts == 0: #JH
+        #  print "index",index,":" #JH
+        #  print "sample.weight:",sample.weight
+        #  print "pair_mass:",pair_mass
+        #print JH_weight #JH
+        #print "tag_Ele_pt"
+        #print tag_Ele_pt #JH
 
         for bnidx in range(nbins):
             weight = bin_formulas[bnidx].EvalInstance(0)
+            #if index % frac_of_nevts == 0: #JH
+            #print "weight:",weight #JH
             if weight:
                 if flag_formula.EvalInstance(0):
                     hPass[bnidx].Fill(pair_mass, weight)
@@ -176,8 +189,8 @@ def makePassFailHistograms( sample, flag, bindef, var ):
             itot  = (passI+failI)
             eff   = passI / (passI+failI)
             e_eff = math.sqrt(passI*passI*efail*efail + failI*failI*epass*epass) / (itot*itot)
-        #print cuts
-        #print '    ==> pass: %.1f +/- %.1f ; fail : %.1f +/- %.1f : eff: %1.3f +/- %1.3f' % (passI,epass,failI,efail,eff,e_eff)
+        print cutBinList[ib]
+        print '    ==> pass: %.1f +/- %.1f ; fail : %.1f +/- %.1f : eff: %1.3f +/- %1.3f' % (passI,epass,failI,efail,eff,e_eff)
 
     ##########
     # Clean up

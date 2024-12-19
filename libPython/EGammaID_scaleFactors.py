@@ -29,7 +29,7 @@ def isFloat( myFloat ):
 
 
 graphColors = [rt.kBlack, rt.kGray+1, rt.kRed +1, rt.kRed-2, rt.kAzure+2, rt.kAzure-1, 
-               rt.kSpring-1, rt.kYellow -2 , rt.kYellow+1,
+               rt.kSpring-1, rt.kYellow -2 , rt.kYellow+1, rt.kOrange,
                rt.kBlack, rt.kBlack, rt.kBlack, 
                rt.kBlack, rt.kBlack, rt.kBlack, rt.kBlack, rt.kBlack, rt.kBlack, rt.kBlack ]
 
@@ -118,7 +118,8 @@ def EffiGraph1D(effDataList, effMCList, sfList ,nameout, xAxis = 'pT', yAxis = '
         p1.SetLogx()
         p2.SetLogx()    
         xMin = 10
-        xMax = 500
+        #xMax = 500
+        xMax = 1000 #JH : FIXME later!
     elif 'vtx' in xAxis or 'Vtx' in xAxis or 'PV' in xAxis:
         xMin =  3
         xMax = 42
@@ -304,7 +305,8 @@ def doEGM_SFs(filein, lumi, axis = ['pT','eta'] ):
 
         if len(numbers) > 0 and isFloat(numbers[0]):
             etaKey = ( float(numbers[0]), float(numbers[1]) )
-            ptKey  = ( float(numbers[2]), min(500,float(numbers[3])) )
+            #ptKey  = ( float(numbers[2]), min(500,float(numbers[3])) )
+            ptKey  = ( float(numbers[2]), float(numbers[3]) ) #JH
         
             myeff = efficiency(ptKey,etaKey,
                                float(numbers[4]),float(numbers[5]),float(numbers[6] ),float(numbers[7] ),
@@ -317,7 +319,7 @@ def doEGM_SFs(filein, lumi, axis = ['pT','eta'] ):
 
 ### massage the numbers a bit
     effGraph.symmetrizeSystVsEta()
-    effGraph.combineSyst()
+    effGraph.combineSyst() #JH : so this first takes +/- bin average of the efficiency, and then hand it over to efficiency.combineSyst, where variatedEff - averageEff is counted as a syst source.
 
     print " ------------------------------- "
 

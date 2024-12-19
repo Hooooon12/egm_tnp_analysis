@@ -224,9 +224,17 @@ if args.sumUp:
             effis['tagSel'][0],
             )
         print astr
+        if "passingHEEP" in outputDirectory: #JH
+          if float(v2Range[0])<35.:
+            print "This is HEEP ID. Pass this line ..."
+            continue #JH
         fOut.write( astr + '\n' )
     fOut.close()
 
     print 'Effis saved in file : ',  effFileName
     import libPython.EGammaID_scaleFactors as egm_sf
-    egm_sf.doEGM_SFs(effFileName,sampleToFit.lumi)
+    #egm_sf.doEGM_SFs(effFileName,sampleToFit.lumi)
+    if "HEEPbin" in outputDirectory: #JH
+      egm_sf.doEGM_SFs(effFileName,sampleToFit.lumi,['pT','abseta']) #JH
+    else:
+      egm_sf.doEGM_SFs(effFileName,sampleToFit.lumi)

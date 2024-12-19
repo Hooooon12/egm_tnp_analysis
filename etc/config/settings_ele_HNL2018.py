@@ -13,14 +13,6 @@ flags = {
     'passingTight94XV2'   : '(passingTight94XV2  == 1)',
     'passingCutBasedTight94XV2'   : '(passingCutBasedTight94XV2)', #JH : SKFlat variable
     'passingHNLMVA'   : '(passingHNLMVA)', #JH : SKFlat variable
-    'passingHNLMVAFake'   : '(passingHNLMVAFake)', #JH : SKFlat variable
-    'passingHNLMVACF'   : '(passingHNLMVACF)', #JH : SKFlat variable
-    'passingHNLMVAConv'   : '(passingHNLMVAConv)', #JH : SKFlat variable
-    'passingHNLMVA_TrkIso'   : '(passingHNLMVA_TrkIso)', #JH : SKFlat variable
-    'passingMVALoose'   : '(passingMVALoose)', #JH : SKFlat variable
-    'passingHEEP'   : '(passingHEEP)', #JH : SKFlat variable
-    'passingHNLHeep'   : '(passingHNLHeep)', #JH : SKFlat variable
-    'passingTriggerEmul'   : '(passingTriggerEmul)', #JH : SKFlat variable
     'passingMVA94Xwp80isoV2' : '(passingMVA94Xwp80isoV2 == 1)',
     'passingMVA94Xwp90isoV2' : '(passingMVA94Xwp90isoV2 == 1)',
     'passingMVA94Xwp80noisoV2' : '(passingMVA94Xwp80noisoV2 == 1)',
@@ -30,17 +22,7 @@ flags = {
     'passingMVA94XwpHZZisoV2'  : '(passingMVA94XwpHZZisoV2 == 1)',
     }
 
-#baseOutDir = 'results/UL2017_HNL/tnpEleID/' #JH : This used POG trees as the input
-#baseOutDir = 'results/UL2017_HNL_SKFlat/tnpEleID/' #JH : This will use our tree from SkimTree_EGamma
-#baseOutDir = 'results/UL2017_HNL_SKFlat_TrigCut/tnpEleID/' #JH : This will use our tree from SkimTree_EGamma
-#baseOutDir = 'results/UL2017_NewTree_HNL_SKFlat_TrigCut/tnpEleID/' #JH : This will use our tree from SkimTree_EGamma_HEEP
-#baseOutDir = 'results/UL2017_OldTree_HNL_SKFlat_TrigCut/tnpEleID/' #JH : Data from SkimTree_Egamma, mc from SkimTree_Egamma_HEEP
-#baseOutDir = 'results/UL2017_OldDataMCTree_HNL_SKFlat_TrigCut/tnpEleID/' #JH : Data, mc from Skimtree_EGamma
-#baseOutDir = 'results/UL2017_NewDataOldMCTree_HNL_SKFlat_TrigCut/tnpEleID/' #JH : Data from Skimtree_EGamma_HEEP, MC from Skintree_EGamma
-#baseOutDir = 'results/UL2017_NewDataOldMCTree_HNL_SKFlat_TrigCut_EtaCut/tnpEleID/' #JH : Data from Skimtree_EGamma_HEEP, MC from Skintree_EGamma, trigger cut to low pt, and fix eta cut referring to : https://github.com/swagata87/EgammaAnalysis-TnPTreeProducer/blob/Nm1_UL_106X/python/TnPTreeProducer_cfg.py#L117, later add TightId to tag see https://github.com/swagata87/EgammaAnalysis-TnPTreeProducer/blob/Nm1_UL_106X/python/egmElectronIDModules_cff.py#L307-L312
-#baseOutDir = 'results/UL2017_FixPU/tnpEleID/' #JH : Data from Skimtree_EGamma_HEEP, MC from Skintree_EGamma, trigger cut to low pt, and finally matched to https://github.com/swagata87/EgammaAnalysis-TnPTreeProducer/blob/Nm1_UL_106X/python/TnPTreeProducer_cfg.py
-#baseOutDir = 'results/UL2017_TestHEEPbin/tnpEleID/' #JH : test purposes
-baseOutDir = 'results/UL2017_HEEPbin/tnpEleID/' #JH : HEEP bin
+baseOutDir = 'results/UL2018_NewDataNewMC_FixPU/tnpEleID/' #JH : Data from Skimtree_EGamma_HEEP, MC from Skintree_EGamma, trigger cut to low pt, and finally matched to https://github.com/swagata87/EgammaAnalysis-TnPTreeProducer/blob/Nm1_UL_106X/python/TnPTreeProducer_cfg.py
 
 #############################################################
 ########## samples definition  - preparing the samples
@@ -51,26 +33,16 @@ import etc.inputs.tnpSampleDef as tnpSamples
 tnpTreeDir = 'tnpEleIDs'
 
 samplesDef = {
-    #'data'   : tnpSamples.UL2017['data_Run2017B'].clone(),
-    #'data'   : tnpSamples.UL2017['data_Run2017'].clone(), #JH
-    #'mcNom'  : tnpSamples.UL2017['DY_madgraph'].clone(),
-    #'mcAlt'  : tnpSamples.UL2017['DY_amcatnloext'].clone(),
-    #'tagSel' : tnpSamples.UL2017['DY_madgraph'].clone(),
-    'data'   : tnpSamples.HNL2017['data_Run2017B'].clone(),
-    'mcNom'  : tnpSamples.HNL2017['DY_madgraph'].clone(),
-    'mcAlt'  : tnpSamples.HNL2017['DY_amcatnloext'].clone(),
-    'tagSel' : tnpSamples.HNL2017['DY_madgraph'].clone(), #JH
+    'data'   : tnpSamples.HNL2018['data_Run2018A'].clone(),
+    'mcNom'  : tnpSamples.HNL2018['DY_madgraph'].clone(),
+    'mcAlt'  : tnpSamples.HNL2018['DY_amcatnloext'].clone(),
+    'tagSel' : tnpSamples.HNL2018['DY_madgraph'].clone(), #JH
 }
 
 ## can add data sample easily
-#samplesDef['data'].add_sample( tnpSamples.UL2017['data_Run2017C'] )
-#samplesDef['data'].add_sample( tnpSamples.UL2017['data_Run2017D'] )
-#samplesDef['data'].add_sample( tnpSamples.UL2017['data_Run2017E'] )
-#samplesDef['data'].add_sample( tnpSamples.UL2017['data_Run2017F'] )
-samplesDef['data'].add_sample( tnpSamples.HNL2017['data_Run2017C'] )
-samplesDef['data'].add_sample( tnpSamples.HNL2017['data_Run2017D'] )
-samplesDef['data'].add_sample( tnpSamples.HNL2017['data_Run2017E'] )
-samplesDef['data'].add_sample( tnpSamples.HNL2017['data_Run2017F'] ) #JH
+samplesDef['data'].add_sample( tnpSamples.HNL2018['data_Run2018B'] ) #JH
+samplesDef['data'].add_sample( tnpSamples.HNL2018['data_Run2018C'] )
+samplesDef['data'].add_sample( tnpSamples.HNL2018['data_Run2018D'] )
 
 ## some sample-based cuts... general cuts defined here after
 ## require mcTruth on MC DY samples and additional cuts
@@ -96,30 +68,24 @@ if not samplesDef['tagSel'] is None:
 #if not samplesDef['tagSel'] is None: samplesDef['tagSel'].set_weight(weightName)
 
 ## set MC weight, can use several pileup rw for different data taking periods
-#weightName = 'weights_2017_runBCDEF.totWeight'
-weightName = 'weight_tree.totWeight'
+weightName = 'tnpEleIDs/fitter_tree.totWeight'
 if not samplesDef['mcNom' ] is None: samplesDef['mcNom' ].set_weight(weightName)
 if not samplesDef['mcAlt' ] is None: samplesDef['mcAlt' ].set_weight(weightName)
 if not samplesDef['tagSel'] is None: samplesDef['tagSel'].set_weight(weightName)
-#if not samplesDef['mcNom' ] is None: samplesDef['mcNom' ].set_puTree('/data6/Users/jihkim/tnp_tamsa/POG_tree/2017//DY_madgraph_ele.pu.puTree.root')
-#if not samplesDef['mcAlt' ] is None: samplesDef['mcAlt' ].set_puTree('/data6/Users/jihkim/tnp_tamsa/POG_tree/2017//DY_amcatnloext_ele.pu.puTree.root')
-#if not samplesDef['tagSel'] is None: samplesDef['tagSel'].set_puTree('/data6/Users/jihkim/tnp_tamsa/POG_tree/2017//DY_madgraph_ele.pu.puTree.root') #JH
-if not samplesDef['mcNom' ] is None: samplesDef['mcNom' ].set_puTree('/gv0/DATA/SKFlat/Run2UltraLegacy_v3/2017/MC_SkimTree_EGammaTnP_HEEP/DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8/DYJetsToLL_M-50_MG_2017.root')
-if not samplesDef['mcAlt' ] is None: samplesDef['mcAlt' ].set_puTree('/gv0/DATA/SKFlat/Run2UltraLegacy_v3/2017/MC_SkimTree_EGammaTnP_HEEP/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/DYJetsToLL_M-50_amcatnlo_2017.root')
-if not samplesDef['tagSel'] is None: samplesDef['tagSel'].set_puTree('/gv0/DATA/SKFlat/Run2UltraLegacy_v3/2017/MC_SkimTree_EGammaTnP_HEEP/DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8/DYJetsToLL_M-50_MG_2017.root') #JH
+if not samplesDef['mcNom' ] is None: samplesDef['mcNom' ].set_puTree('/gv0/DATA/SKFlat/Run2UltraLegacy_v3/2018/MC_SkimTree_EGammaTnP_HEEP/DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8/SKFlatNtuple_2018_MC.root')
+if not samplesDef['mcAlt' ] is None: samplesDef['mcAlt' ].set_puTree('/gv0/DATA/SKFlat/Run2UltraLegacy_v3/2018/MC_SkimTree_EGammaTnP_HEEP/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/SKFlatNtuple_2018_MC.root')
+if not samplesDef['tagSel'] is None: samplesDef['tagSel'].set_puTree('/gv0/DATA/SKFlat/Run2UltraLegacy_v3/2018/MC_SkimTree_EGammaTnP_HEEP/DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8/SKFlatNtuple_2018_MC.root') #JH
 
 
 #############################################################
 ########## bining definition  [can be nD bining]
 #############################################################
-#biningDef = [
-#   { 'var' : 'el_sc_eta' , 'type': 'float', 'bins': [-2.5,-2.0,-1.566,-1.4442, -0.8, 0.0, 0.8, 1.4442, 1.566, 2.0, 2.5] },
-##   { 'var' : 'el_pt' , 'type': 'float', 'bins': [10,20,35,50,100,500] },
-#   { 'var' : 'el_pt' , 'type': 'float', 'bins': [10,20,35,50,100,200,500] },
-#]
 biningDef = [
-   { 'var' : 'abs(el_sc_eta)' , 'type': 'float', 'bins': [0.0, 1.4442, 1.566, 2.5] },
-   { 'var' : 'el_pt' , 'type': 'float', 'bins': [35,50,100,200,300,400,500,600,1000] },
+   { 'var' : 'el_sc_eta' , 'type': 'float', 'bins': [-2.5,-2.0,-1.566,-1.4442, -0.8, 0.0, 0.8, 1.4442, 1.566, 2.0, 2.5] },
+#   { 'var' : 'el_pt' , 'type': 'float', 'bins': [10,20,35,50,100,500] },
+   { 'var' : 'el_pt' , 'type': 'float', 'bins': [10,20,35,50,100,200,500] },
+
+
 ]
 
 #############################################################

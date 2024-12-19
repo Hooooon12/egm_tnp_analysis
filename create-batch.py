@@ -6,7 +6,7 @@ import argparse
 
 parser = argparse.ArgumentParser(description='option')
 parser.add_argument('-e', dest='eras', nargs='+') # take args as a list, return error when there is no arg
-parser.add_argument('-f', dest='flags', nargs='+') # take args as a list, return error when there is no arg
+parser.add_argument('-f', dest='flags', nargs='+') # take args as a list, return error when there is no arg # passingCutBasedTight94XV2
 args = parser.parse_args()
 
 pwd = os.getcwd()
@@ -27,11 +27,11 @@ for era in args.eras:
       runfile.write("python tnpEGM_fitter.py etc/config/settings_ele_HNL"+era+".py --flag "+flag+" --checkBins\n"             ) 
       runfile.write("python tnpEGM_fitter.py etc/config/settings_ele_HNL"+era+".py --flag "+flag+" --createBins\n"            )     
       runfile.write("python tnpEGM_fitter.py etc/config/settings_ele_HNL"+era+".py --flag "+flag+" --createHists\n"           )     
-      #runfile.write("python tnpEGM_fitter.py etc/config/settings_ele_HNL"+era+".py --flag "+flag+" --doFit\n"                 )        
-      #runfile.write("python tnpEGM_fitter.py etc/config/settings_ele_HNL"+era+".py --flag "+flag+" --doFit --mcSig --altSig\n")   
-      #runfile.write("python tnpEGM_fitter.py etc/config/settings_ele_HNL"+era+".py --flag "+flag+" --doFit --altSig\n"        )    
-      #runfile.write("python tnpEGM_fitter.py etc/config/settings_ele_HNL"+era+".py --flag "+flag+" --doFit --altBkg\n"        ) 
-      #runfile.write("python tnpEGM_fitter.py etc/config/settings_ele_HNL"+era+".py --flag "+flag+" --sumUp\n"                 )
+      runfile.write("python tnpEGM_fitter.py etc/config/settings_ele_HNL"+era+".py --flag "+flag+" --doFit\n"                 )        
+      runfile.write("python tnpEGM_fitter.py etc/config/settings_ele_HNL"+era+".py --flag "+flag+" --doFit --mcSig --altSig\n")   
+      runfile.write("python tnpEGM_fitter.py etc/config/settings_ele_HNL"+era+".py --flag "+flag+" --doFit --altSig\n"        )    
+      runfile.write("python tnpEGM_fitter.py etc/config/settings_ele_HNL"+era+".py --flag "+flag+" --doFit --altBkg\n"        ) 
+      runfile.write("python tnpEGM_fitter.py etc/config/settings_ele_HNL"+era+".py --flag "+flag+" --sumUp\n"                 )
 
     with open(pwd+"/log/submitHNL"+era+"_"+flag+".sh",'w') as submitfile:
       submitfile.write("universe = vanilla\n")
