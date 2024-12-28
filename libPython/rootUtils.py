@@ -1,6 +1,7 @@
 import ROOT as rt
 import math
 from fitUtils import *
+from ctypes import c_double
 #from fitSimultaneousUtils import *
 
 
@@ -36,10 +37,14 @@ def getAllEffi( info, bindef ):
         #bin2 = hP.GetXaxis().GetNbins()
         bin1 = 11
         bin2 = 70
-        eP = rt.Double(-1.0)
-        eF = rt.Double(-1.0)
+        #eP = rt.Double(-1.0) # ROOT.Double has been deprecated: https://root-forum.cern.ch/t/variable-reference-from-pyroot/40060
+        #eF = rt.Double(-1.0)
+        eP = c_double(-1.0)
+        eF = c_double(-1.0)
         nP = hP.IntegralAndError(bin1,bin2,eP)
         nF = hF.IntegralAndError(bin1,bin2,eF)
+        eP = eP.value
+        eF = eF.value
 
         effis['mcNominal'] = computeEffi(nP,nF,eP,eF)
         rootfile.Close()
@@ -53,10 +58,14 @@ def getAllEffi( info, bindef ):
       #  bin2 = hP.GetXaxis().GetNbins()
         bin1 = 11
         bin2 = 70
-        eP = rt.Double(-1.0)
-        eF = rt.Double(-1.0)
+        #eP = rt.Double(-1.0)
+        #eF = rt.Double(-1.0)
+        eP = c_double(-1.0)
+        eF = c_double(-1.0)
         nP = hP.IntegralAndError(bin1,bin2,eP)
         nF = hF.IntegralAndError(bin1,bin2,eF)
+        eP = eP.value
+        eF = eF.value
 
         effis['tagSel'] = computeEffi(nP,nF,eP,eF)
         rootfile.Close()
@@ -70,10 +79,14 @@ def getAllEffi( info, bindef ):
         #bin2 = hP.GetXaxis().GetNbins()
         bin1 = 11
         bin2 = 70
-        eP = rt.Double(-1.0)
-        eF = rt.Double(-1.0)
+        #eP = rt.Double(-1.0)
+        #eF = rt.Double(-1.0)
+        eP = c_double(-1.0)
+        eF = c_double(-1.0)
         nP = hP.IntegralAndError(bin1,bin2,eP)
         nF = hF.IntegralAndError(bin1,bin2,eF)
+        eP = eP.value
+        eF = eF.value
 
         effis['mcAlt'] = computeEffi(nP,nF,eP,eF)
         rootfile.Close()

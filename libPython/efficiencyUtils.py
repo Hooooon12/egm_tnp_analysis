@@ -288,6 +288,9 @@ class efficiencyList:
                         else:                        
                             averageMC   = (effPlus.effMC   + effMinus.effMC  )/2.
                         ### so this is h2D bin is inside the bining used by e/gamma POG
+                        if (etaBin[0]==-1.566 or etaBin[0]==1.444): # handle gaps
+                          self.effList[ptBin][etaBin].effMC = 1.
+                          averageMC = 1. # SKFlat doesn't have gap events; avoid zero division with gaps in below lines
                         h2.SetBinContent(ix,iy, self.effList[ptBin][etaBin].effData      / self.effList[ptBin][etaBin].effMC)
                         h2.SetBinError  (ix,iy, self.effList[ptBin][etaBin].systCombined / averageMC )
                         if onlyError   == 0 :
@@ -404,9 +407,14 @@ class efficiencyList:
                 effAverage = self.effList[ptBin][etaBin]
                 aValue  = effAverage.effData
                 anError = effAverage.systCombined 
+
                 if typeGR == 1:
-                    aValue  = effAverage.effData      / effAverage.effMC
-                    anError = effAverage.systCombined / effAverage.effMC  
+                    if (etaBin[0]==-1.566 or etaBin[0]==1.444): # handle gaps first
+                      aValue  = 1.
+                      anError = 1.
+                    else:
+                      aValue  = effAverage.effData      / effAverage.effMC
+                      anError = effAverage.systCombined / effAverage.effMC
                 if typeGR == -1:
                     aValue  = effAverage.effMC
                     anError = 0#effAverage.errEffMC
