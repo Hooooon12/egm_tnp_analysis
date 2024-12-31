@@ -1,16 +1,17 @@
 # egm_tnp_analysis
 
 
-## Install stable branch
+## Install this branch
 
->git clone -b egm_tnp_CleanedCodeForUL_17March2020  https://github.com/lsoffi/egm_tnp_analysis
+> git clone -b CleanedForHNL https://github.com/Hooooon12/egm_tnp_analysis.git
 
 > cd egm_tnp_analysis
 
-> source etc/scripts/setupUL.sh (need ROOT>6.10)
+> source setup.sh
 
-> make
+## Super Quick Start
 
+> source RunTnP.sh
 
 ## Quick description
 
@@ -128,70 +129,3 @@ to the fitter. One can handle complex flags with a cut string (root cut string):
 **- Fitting parameters.**
     
     Define in this section the init parameters for the different fit, can be tuned to improve convergence.
-
-
-## Changes for UL preparation:
-
-IMPORTANT-1: one single tnpSampleDef.py file for all eras.
-
-IMPORTANT-2: I used a specific name system that i would ask you to follow and maintain also in the future for next eras:
-
-If i want to run on PromptReco2018, then:
-
-1. In  tnpSampleDef.py i add an eos directory called eosPromptReco2018 and a module called PromptReco2018 with files inside
-
-2. I use a dedicated setting_ele_PromptReco2018.py and setting_pho_PromptReco2018.py where inside:
-
-    2.1 i specifically call the module  PromptReco2018
-
-    2.2 I call the output directory results/PromptReco2018/blabla
-
-
-At the moment the eras are:
-
-LegacyReReco2016
-
-ReReco2017
-
-PromptReco2018
-
-UL2017
-
-We will add soon:
-
-UL2018
-
-UL2016
-   
-====================
-
-##  Update PU weights 
-
-1. Pileup files have to be computed with: python etc/scripts/pureweight.py
-
-Here one has to update the name of the directory whre the files will be located and the corresponding names.
-
-
-2.This pyhton uses the following: libPython/puReweighter.py.
-
-Here one nees to add the PU MC mix numbers that are available here: http://cmslxr.fnal.gov/source/SimGeneral/MixingModule/python/?v=CMSSW_9_4_0
-
-One also needs to update sample names here:
-etc/inputs/tnpSampleDef.py
-
-3.The data PU distrubtions can be computed using the following instructions (similar to what is done in step1):
-
-pileupCalc.py -i /afs/cern.ch/cms/CAF/CMSCOMM/COMM_DQM/certification/Collisions17/13TeV/PromptReco/Cert_294927-306462_13TeV_PromptReco_Collisions17_JSON.txt --inputLumiJSON /afs/cern.ch/cms/CAF/CMSCOMM/COMM_DQM/certification/Collisions17/13TeV/PileUp/pileup_latest.txt --calcMode true --minBiasXsec 69200 --maxPileupBin 100 --numPileupBins 100 pileup_2017_41fb.root
-
-Other pu files for each run, like pileup_2017_RUNB.root, pileup_2017_RUNC.root etc, can be copied from previous location. The previous location of pu directory can be found in github. For example, in this version, the location is,  
-/eos/cms/store/group/phys_egamma/swmukher/tnp/ID_V2_2017/PU
-
-
-The nvtx and rho histos are not needed because we will use the pu method (type = 0) for the reweight.
-
-NB: Before using these py in order to load the needed libraires one has to run: 
-export  PYTHONPATH=$PYTHONPATH:/afs/cern.ch/user/s/soffi/scratch0/TEST/CMSSW-10-0-0-pre3/src/egm_tnp_analysis 
-
-
-#### adding remote (Fabrice version)
-git remote add origin git@github.com:fcouderc/egm_tnp_analysis.git
