@@ -30,7 +30,7 @@ flags = {
     'passingMVA94XwpHZZisoV2'  : '(passingMVA94XwpHZZisoV2 == 1)',
     }
 
-baseOutDir = 'results/HNL2018/tnpEleID/'
+baseOutDir = 'results/HNL2016preVFP/tnpEleID/'
 
 #############################################################
 ########## samples definition  - preparing the samples
@@ -41,16 +41,17 @@ import etc.inputs.tnpSampleDef as tnpSamples
 tnpTreeDir = 'tnpEleIDs'
 
 samplesDef = {
-    'data'   : tnpSamples.HNL2018['data_Run2018A'].clone(),
-    'mcNom'  : tnpSamples.HNL2018['DY_madgraph'].clone(),
-    'mcAlt'  : tnpSamples.HNL2018['DY_amcatnlo'].clone(),
-    'tagSel' : tnpSamples.HNL2018['DY_madgraph'].clone(),
+    'data'   : tnpSamples.HNL2016preVFP['data_Run2016B_ver2'].clone(),
+    'mcNom'  : tnpSamples.HNL2016preVFP['DY_madgraph'].clone(),
+    'mcAlt'  : tnpSamples.HNL2016preVFP['DY_amcatnlo'].clone(),
+    'tagSel' : tnpSamples.HNL2016preVFP['DY_madgraph'].clone(),
 }
 
 ## can add data sample easily
-samplesDef['data'].add_sample( tnpSamples.HNL2018['data_Run2018B'] )
-samplesDef['data'].add_sample( tnpSamples.HNL2018['data_Run2018C'] )
-samplesDef['data'].add_sample( tnpSamples.HNL2018['data_Run2018D'] )
+samplesDef['data'].add_sample( tnpSamples.HNL2016preVFP['data_Run2016C'] )
+samplesDef['data'].add_sample( tnpSamples.HNL2016preVFP['data_Run2016D'] )
+samplesDef['data'].add_sample( tnpSamples.HNL2016preVFP['data_Run2016E'] )
+samplesDef['data'].add_sample( tnpSamples.HNL2016preVFP['data_Run2016F'] )
 
 ## some sample-based cuts... general cuts defined here after
 ## require mcTruth on MC DY samples and additional cuts
@@ -80,9 +81,9 @@ weightName = 'weight_tree.totWeight'
 if not samplesDef['mcNom' ] is None: samplesDef['mcNom' ].set_weight(weightName)
 if not samplesDef['mcAlt' ] is None: samplesDef['mcAlt' ].set_weight(weightName)
 if not samplesDef['tagSel'] is None: samplesDef['tagSel'].set_weight(weightName)
-if not samplesDef['mcNom' ] is None: samplesDef['mcNom' ].set_puTree('/gv0/DATA/SKFlat/Run2UltraLegacy_v3/2018/MC_SkimTree_EGammaTnP_HEEP/DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8/DYJetsToLL_M-50_MG_2018.root')
-if not samplesDef['mcAlt' ] is None: samplesDef['mcAlt' ].set_puTree('/gv0/DATA/SKFlat/Run2UltraLegacy_v3/2018/MC_SkimTree_EGammaTnP_HEEP/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/DYJetsToLL_M-50_amcatnlo_2018.root')
-if not samplesDef['tagSel'] is None: samplesDef['tagSel'].set_puTree('/gv0/DATA/SKFlat/Run2UltraLegacy_v3/2018/MC_SkimTree_EGammaTnP_HEEP/DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8/DYJetsToLL_M-50_MG_2018.root')
+if not samplesDef['mcNom' ] is None: samplesDef['mcNom' ].set_puTree('/gv0/DATA/SKFlat/Run2UltraLegacy_v3/2016preVFP/MC_SkimTree_EGammaTnP_HEEP/DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8/DYJetsToLL_M-50_MG_2016a.root')
+if not samplesDef['mcAlt' ] is None: samplesDef['mcAlt' ].set_puTree('/gv0/DATA/SKFlat/Run2UltraLegacy_v3/2016preVFP/MC_SkimTree_EGammaTnP_HEEP/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/DYJetsToLL_M-50_amcatnlo_2016a.root')
+if not samplesDef['tagSel'] is None: samplesDef['tagSel'].set_puTree('/gv0/DATA/SKFlat/Run2UltraLegacy_v3/2016preVFP/MC_SkimTree_EGammaTnP_HEEP/DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8/DYJetsToLL_M-50_MG_2016a.root')
 
 
 #############################################################
@@ -90,10 +91,7 @@ if not samplesDef['tagSel'] is None: samplesDef['tagSel'].set_puTree('/gv0/DATA/
 #############################################################
 biningDef = [
    { 'var' : 'el_sc_eta' , 'type': 'float', 'bins': [-2.5,-2.0,-1.566,-1.4442, -0.8, 0.0, 0.8, 1.4442, 1.566, 2.0, 2.5] },
-#   { 'var' : 'el_pt' , 'type': 'float', 'bins': [10,20,35,50,100,500] },
-   { 'var' : 'el_pt' , 'type': 'float', 'bins': [10,20,35,50,100,200,500] },
-
-
+   { 'var' : 'el_pt' , 'type': 'float', 'bins': [15,20,35,50,100,200,500] },
 ]
 
 #############################################################
@@ -103,7 +101,7 @@ biningDef = [
 cutBase   = 'tag_Ele_pt > 35 && abs(tag_sc_eta) < 2.17 && el_q*tag_Ele_q < 0'
 
 # can add addtionnal cuts for some bins (first check bin number using tnpEGM --checkBins)
-#LS: we removed the met cuts cause JEC not ready for UL2017
+#LS: we removed the met cuts cause JEC not ready for UL2016preVFP
 #additionalCuts = { 
 #    0 : 'tag_Ele_trigMVA > 0.92 && sqrt( 2*event_met_pfmet*tag_Ele_pt*(1-cos(event_met_pfphi-tag_Ele_phi))) < 45',
 #    1 : 'tag_Ele_trigMVA > 0.92 && sqrt( 2*event_met_pfmet*tag_Ele_pt*(1-cos(event_met_pfphi-tag_Ele_phi))) < 45',

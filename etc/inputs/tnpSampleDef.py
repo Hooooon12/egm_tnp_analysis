@@ -41,11 +41,11 @@ HNL2016preVFP = {
                                        SKFlat_amc_2016preVFP + 'SKFlatNtuple_2016preVFP_MC_*.root',
                                        isMC = True, nEvts =  -1 ),
 
-    'data_Run2016B_ver2' : tnpSample('data_Run2016B_ver2' , SKFlat_data_2016preVFP + 'periodB_ver2/2024_09_20_184353/SKFlatNtuple_2016preVFP_DATA_*.root' , lumi = 5.879330594),
-    'data_Run2016C'      : tnpSample('data_Run2016C'      , SKFlat_data_2016preVFP + 'periodC/2024_09_20_184353/SKFlatNtuple_2016preVFP_DATA_*.root'      , lumi = 2.64992914),
-    'data_Run2016D'      : tnpSample('data_Run2016D'      , SKFlat_data_2016preVFP + 'periodD/2024_09_20_184353/SKFlatNtuple_2016preVFP_DATA_*.root'      , lumi = 4.292865604),
-    'data_Run2016E'      : tnpSample('data_Run2016E'      , SKFlat_data_2016preVFP + 'periodE/2024_09_20_184353/SKFlatNtuple_2016preVFP_DATA_*.root'      , lumi = 4.185165152),
-    'data_Run2016F'      : tnpSample('data_Run2016F'      , SKFlat_data_2016preVFP + 'periodF/2024_09_20_184353/SKFlatNtuple_2016preVFP_DATA_*.root'      , lumi = 2.725508364),
+    'data_Run2016B_ver2' : tnpSample('data_Run2016B_ver2' , SKFlat_data_2016preVFP + 'periodB_ver2/2024_09_21_003357/SKFlatNtuple_2016preVFP_DATA_*.root' , lumi = 5.879330594),
+    'data_Run2016C'      : tnpSample('data_Run2016C'      , SKFlat_data_2016preVFP + 'periodC/2024_09_21_003357/SKFlatNtuple_2016preVFP_DATA_*.root'      , lumi = 2.64992914),
+    'data_Run2016D'      : tnpSample('data_Run2016D'      , SKFlat_data_2016preVFP + 'periodD/2024_09_21_003357/SKFlatNtuple_2016preVFP_DATA_*.root'      , lumi = 4.292865604),
+    'data_Run2016E'      : tnpSample('data_Run2016E'      , SKFlat_data_2016preVFP + 'periodE/2024_09_21_003357/SKFlatNtuple_2016preVFP_DATA_*.root'      , lumi = 4.185165152),
+    'data_Run2016F'      : tnpSample('data_Run2016F'      , SKFlat_data_2016preVFP + 'periodF/2024_09_21_003357/SKFlatNtuple_2016preVFP_DATA_*.root'      , lumi = 2.725508364),
     }
 
 HNL2016postVFP = {
@@ -57,9 +57,9 @@ HNL2016postVFP = {
                                        SKFlat_amc_2016postVFP + 'SKFlatNtuple_2016postVFP_MC_*.root',
                                        isMC = True, nEvts =  -1 ),
 
-    'data_Run2016F' : tnpSample('data_Run2016F' , SKFlat_data_2016postVFP + 'periodF/2024_09_20_184353/SKFlatNtuple_2016postVFP_DATA_*.root' , lumi = 0.414987426),
-    'data_Run2016G' : tnpSample('data_Run2016G' , SKFlat_data_2016postVFP + 'periodG/2024_09_20_184353/SKFlatNtuple_2016postVFP_DATA_*.root' , lumi = 7.634508755),
-    'data_Run2016H' : tnpSample('data_Run2016H' , SKFlat_data_2016postVFP + 'periodH/2024_09_20_184353/SKFlatNtuple_2016postVFP_DATA_*.root' , lumi = 8.802242522),
+    'data_Run2016F' : tnpSample('data_Run2016F' , SKFlat_data_2016postVFP + 'periodF/2024_09_21_003357/SKFlatNtuple_2016postVFP_DATA_*.root' , lumi = 0.414987426),
+    'data_Run2016G' : tnpSample('data_Run2016G' , SKFlat_data_2016postVFP + 'periodG/2024_09_21_003357/SKFlatNtuple_2016postVFP_DATA_*.root' , lumi = 7.634508755),
+    'data_Run2016H' : tnpSample('data_Run2016H' , SKFlat_data_2016postVFP + 'periodH/2024_09_21_003357/SKFlatNtuple_2016postVFP_DATA_*.root' , lumi = 8.802242522),
     }
 
 HNL2017 = {
