@@ -30,7 +30,7 @@ flags = {
     'passingMVA94XwpHZZisoV2'  : '(passingMVA94XwpHZZisoV2 == 1)',
     }
 
-baseOutDir = 'results/HNL2016preVFP/tnpEleID/'
+baseOutDir = 'results/Jan2025_HNL2016preVFP/tnpEleID/'
 
 #############################################################
 ########## samples definition  - preparing the samples
@@ -41,17 +41,17 @@ import etc.inputs.tnpSampleDef as tnpSamples
 tnpTreeDir = 'tnpEleIDs'
 
 samplesDef = {
-    'data'   : tnpSamples.HNL2016preVFP['data_Run2016B_ver2'].clone(),
-    'mcNom'  : tnpSamples.HNL2016preVFP['DY_madgraph'].clone(),
-    'mcAlt'  : tnpSamples.HNL2016preVFP['DY_amcatnlo'].clone(),
-    'tagSel' : tnpSamples.HNL2016preVFP['DY_madgraph'].clone(),
+    'data'   : tnpSamples.Jan2025_HNL2016preVFP['data_Run2016B_ver2'].clone(),
+    'mcNom'  : tnpSamples.Jan2025_HNL2016preVFP['DY_powheg'].clone(),
+    'mcAlt'  : tnpSamples.Jan2025_HNL2016preVFP['DY_amcatnlo'].clone(),
+    'tagSel' : tnpSamples.Jan2025_HNL2016preVFP['DY_powheg'].clone(),
 }
 
 ## can add data sample easily
-samplesDef['data'].add_sample( tnpSamples.HNL2016preVFP['data_Run2016C'] )
-samplesDef['data'].add_sample( tnpSamples.HNL2016preVFP['data_Run2016D'] )
-samplesDef['data'].add_sample( tnpSamples.HNL2016preVFP['data_Run2016E'] )
-samplesDef['data'].add_sample( tnpSamples.HNL2016preVFP['data_Run2016F'] )
+samplesDef['data'].add_sample( tnpSamples.Jan2025_HNL2016preVFP['data_Run2016C'] )
+samplesDef['data'].add_sample( tnpSamples.Jan2025_HNL2016preVFP['data_Run2016D'] )
+samplesDef['data'].add_sample( tnpSamples.Jan2025_HNL2016preVFP['data_Run2016E'] )
+samplesDef['data'].add_sample( tnpSamples.Jan2025_HNL2016preVFP['data_Run2016F'] )
 
 ## some sample-based cuts... general cuts defined here after
 ## require mcTruth on MC DY samples and additional cuts
@@ -67,7 +67,7 @@ if not samplesDef['mcNom' ] is None: samplesDef['mcNom' ].set_mcTruth()
 if not samplesDef['mcAlt' ] is None: samplesDef['mcAlt' ].set_mcTruth()
 if not samplesDef['tagSel'] is None: samplesDef['tagSel'].set_mcTruth()
 if not samplesDef['tagSel'] is None:
-    samplesDef['tagSel'].rename('mcAltSel_DY_madgraph')
+    samplesDef['tagSel'].rename('mcAltSel_DY_powheg')
     samplesDef['tagSel'].set_cut('tag_Ele_pt > 37') #canceled non trig MVA cut
 
 ## set MC weight, simple way (use tree weight) 
@@ -81,9 +81,9 @@ weightName = 'weight_tree.totWeight'
 if not samplesDef['mcNom' ] is None: samplesDef['mcNom' ].set_weight(weightName)
 if not samplesDef['mcAlt' ] is None: samplesDef['mcAlt' ].set_weight(weightName)
 if not samplesDef['tagSel'] is None: samplesDef['tagSel'].set_weight(weightName)
-if not samplesDef['mcNom' ] is None: samplesDef['mcNom' ].set_puTree('/gv0/DATA/SKFlat/Run2UltraLegacy_v3/2016preVFP/MC_SkimTree_EGammaTnP_HEEP/DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8/DYJetsToLL_M-50_MG_2016a.root')
-if not samplesDef['mcAlt' ] is None: samplesDef['mcAlt' ].set_puTree('/gv0/DATA/SKFlat/Run2UltraLegacy_v3/2016preVFP/MC_SkimTree_EGammaTnP_HEEP/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/DYJetsToLL_M-50_amcatnlo_2016a.root')
-if not samplesDef['tagSel'] is None: samplesDef['tagSel'].set_puTree('/gv0/DATA/SKFlat/Run2UltraLegacy_v3/2016preVFP/MC_SkimTree_EGammaTnP_HEEP/DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8/DYJetsToLL_M-50_MG_2016a.root')
+if not samplesDef['mcNom' ] is None: samplesDef['mcNom' ].set_puTree('/gv0/DATA/SKFlat/Run2UltraLegacy_v3/2016preVFP/MC_SkimTree_EGammaTnP_HEEP/DYJetsToEE_M-50_massWgtFix_TuneCP5_13TeV-powhegMiNNLO-pythia8-photos/DYJetsToEE_M-50_massWgtFix_2016a_2025_01_03_050234.root')
+if not samplesDef['mcAlt' ] is None: samplesDef['mcAlt' ].set_puTree('/gv0/DATA/SKFlat/Run2UltraLegacy_v3/2016preVFP/MC_SkimTree_EGammaTnP_HEEP/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/DYJetsToLL_M-50_amcatnlo_2016a_2025_01_03_050234.root')
+if not samplesDef['tagSel'] is None: samplesDef['tagSel'].set_puTree('/gv0/DATA/SKFlat/Run2UltraLegacy_v3/2016preVFP/MC_SkimTree_EGammaTnP_HEEP/DYJetsToEE_M-50_massWgtFix_TuneCP5_13TeV-powhegMiNNLO-pythia8-photos/DYJetsToEE_M-50_massWgtFix_2016a_2025_01_03_050234.root')
 
 
 #############################################################

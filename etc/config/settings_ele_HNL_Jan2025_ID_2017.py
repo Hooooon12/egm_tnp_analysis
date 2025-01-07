@@ -30,7 +30,7 @@ flags = {
     'passingMVA94XwpHZZisoV2'  : '(passingMVA94XwpHZZisoV2 == 1)',
     }
 
-baseOutDir = 'results/HNL2016preVFP/tnpEleID/'
+baseOutDir = 'results/Jan2025_HNL2017/tnpEleID/'
 
 #############################################################
 ########## samples definition  - preparing the samples
@@ -41,17 +41,17 @@ import etc.inputs.tnpSampleDef as tnpSamples
 tnpTreeDir = 'tnpEleIDs'
 
 samplesDef = {
-    'data'   : tnpSamples.HNL2016preVFP['data_Run2016B_ver2'].clone(),
-    'mcNom'  : tnpSamples.HNL2016preVFP['DY_madgraph'].clone(),
-    'mcAlt'  : tnpSamples.HNL2016preVFP['DY_amcatnlo'].clone(),
-    'tagSel' : tnpSamples.HNL2016preVFP['DY_madgraph'].clone(),
+    'data'   : tnpSamples.Jan2025_HNL2017['data_Run2017B'].clone(),
+    'mcNom'  : tnpSamples.Jan2025_HNL2017['DY_powheg'].clone(),
+    'mcAlt'  : tnpSamples.Jan2025_HNL2017['DY_amcatnlo'].clone(),
+    'tagSel' : tnpSamples.Jan2025_HNL2017['DY_powheg'].clone(),
 }
 
 ## can add data sample easily
-samplesDef['data'].add_sample( tnpSamples.HNL2016preVFP['data_Run2016C'] )
-samplesDef['data'].add_sample( tnpSamples.HNL2016preVFP['data_Run2016D'] )
-samplesDef['data'].add_sample( tnpSamples.HNL2016preVFP['data_Run2016E'] )
-samplesDef['data'].add_sample( tnpSamples.HNL2016preVFP['data_Run2016F'] )
+samplesDef['data'].add_sample( tnpSamples.Jan2025_HNL2017['data_Run2017C'] )
+samplesDef['data'].add_sample( tnpSamples.Jan2025_HNL2017['data_Run2017D'] )
+samplesDef['data'].add_sample( tnpSamples.Jan2025_HNL2017['data_Run2017E'] )
+samplesDef['data'].add_sample( tnpSamples.Jan2025_HNL2017['data_Run2017F'] )
 
 ## some sample-based cuts... general cuts defined here after
 ## require mcTruth on MC DY samples and additional cuts
@@ -67,7 +67,7 @@ if not samplesDef['mcNom' ] is None: samplesDef['mcNom' ].set_mcTruth()
 if not samplesDef['mcAlt' ] is None: samplesDef['mcAlt' ].set_mcTruth()
 if not samplesDef['tagSel'] is None: samplesDef['tagSel'].set_mcTruth()
 if not samplesDef['tagSel'] is None:
-    samplesDef['tagSel'].rename('mcAltSel_DY_madgraph')
+    samplesDef['tagSel'].rename('mcAltSel_DY_powheg')
     samplesDef['tagSel'].set_cut('tag_Ele_pt > 37') #canceled non trig MVA cut
 
 ## set MC weight, simple way (use tree weight) 
@@ -81,9 +81,9 @@ weightName = 'weight_tree.totWeight'
 if not samplesDef['mcNom' ] is None: samplesDef['mcNom' ].set_weight(weightName)
 if not samplesDef['mcAlt' ] is None: samplesDef['mcAlt' ].set_weight(weightName)
 if not samplesDef['tagSel'] is None: samplesDef['tagSel'].set_weight(weightName)
-if not samplesDef['mcNom' ] is None: samplesDef['mcNom' ].set_puTree('/gv0/DATA/SKFlat/Run2UltraLegacy_v3/2016preVFP/MC_SkimTree_EGammaTnP_HEEP/DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8/DYJetsToLL_M-50_MG_2016a.root')
-if not samplesDef['mcAlt' ] is None: samplesDef['mcAlt' ].set_puTree('/gv0/DATA/SKFlat/Run2UltraLegacy_v3/2016preVFP/MC_SkimTree_EGammaTnP_HEEP/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/DYJetsToLL_M-50_amcatnlo_2016a.root')
-if not samplesDef['tagSel'] is None: samplesDef['tagSel'].set_puTree('/gv0/DATA/SKFlat/Run2UltraLegacy_v3/2016preVFP/MC_SkimTree_EGammaTnP_HEEP/DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8/DYJetsToLL_M-50_MG_2016a.root')
+if not samplesDef['mcNom' ] is None: samplesDef['mcNom' ].set_puTree('/gv0/DATA/SKFlat/Run2UltraLegacy_v3/2017/MC_SkimTree_EGammaTnP_HEEP/DYJetsToEE_M-50_massWgtFix_TuneCP5_13TeV-powhegMiNNLO-pythia8-photos/DYJetsToEE_M-50_massWgtFix_2017_2025_01_03_050234.root')
+if not samplesDef['mcAlt' ] is None: samplesDef['mcAlt' ].set_puTree('/gv0/DATA/SKFlat/Run2UltraLegacy_v3/2017/MC_SkimTree_EGammaTnP_HEEP/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/DYJetsToLL_M-50_amcatnlo_2017_2025_01_03_050234.root')
+if not samplesDef['tagSel'] is None: samplesDef['tagSel'].set_puTree('/gv0/DATA/SKFlat/Run2UltraLegacy_v3/2017/MC_SkimTree_EGammaTnP_HEEP/DYJetsToEE_M-50_massWgtFix_TuneCP5_13TeV-powhegMiNNLO-pythia8-photos/DYJetsToEE_M-50_massWgtFix_2017_2025_01_03_050234.root')
 
 
 #############################################################
@@ -101,7 +101,7 @@ biningDef = [
 cutBase   = 'tag_Ele_pt > 35 && abs(tag_sc_eta) < 2.17 && el_q*tag_Ele_q < 0'
 
 # can add addtionnal cuts for some bins (first check bin number using tnpEGM --checkBins)
-#LS: we removed the met cuts cause JEC not ready for UL2016preVFP
+#LS: we removed the met cuts cause JEC not ready for UL2017
 #additionalCuts = { 
 #    0 : 'tag_Ele_trigMVA > 0.92 && sqrt( 2*event_met_pfmet*tag_Ele_pt*(1-cos(event_met_pfphi-tag_Ele_phi))) < 45',
 #    1 : 'tag_Ele_trigMVA > 0.92 && sqrt( 2*event_met_pfmet*tag_Ele_pt*(1-cos(event_met_pfphi-tag_Ele_phi))) < 45',
@@ -141,18 +141,11 @@ tnpParNomFit = [
     ]
 
 tnpParAltSigFit = [
-    "meanP[0.5,-5.0,5.0]","sigmaP[1,0.5,5.]","alphaP[2.0,1.2,3.5]" ,'nP[3,-5,5]',"sigmaP_2[1.5,0.5,6.0]","sosP[1,0.5,5.0]",
-    "meanF[1.0,-5.0,5.0]","sigmaF[1,0.5,5.]","alphaF[2.0,1.2,3.5]",'nF[3,-5,5]',"sigmaF_2[2.0,0.5,6.0]","sosF[1,0.5,5.0]",
+    "meanP[-0.0,-5.0,5.0]","sigmaP[1,0.7,6.0]","alphaP[2.0,1.2,3.5]" ,'nP[3,-5,5]',"sigmaP_2[1.5,0.5,6.0]","sosP[1,0.5,5.0]",
+    "meanF[-0.0,-5.0,5.0]","sigmaF[2,0.7,15.0]","alphaF[2.0,1.2,3.5]",'nF[3,-5,5]',"sigmaF_2[2.0,0.5,6.0]","sosF[1,0.5,5.0]",
     "acmsP[60.,50.,75.]","betaP[0.04,0.01,0.06]","gammaP[0.1, 0.005, 1]","peakP[90.0]",
-    "acmsF[60.,50.,85.]","betaF[0.04,0.01,0.06]","gammaF[0.1, 0.005, 1]","peakF[90.0]",
+    "acmsF[60.,50.,75.]","betaF[0.04,0.01,0.06]","gammaF[0.1, 0.005, 1]","peakF[90.0]",
     ]
-
-#tnpParAltSigFit = [
-#    "meanP[-0.0,-5.0,5.0]","sigmaP[1,0.5,10]","alphaP[2.0,1.2,3.5]" ,'nP[3,-5,5]',"sigmaP_2[1.5,0.5,10.0]","sosP[1,0.5,5.0]",
-#    "meanF[-0.0,-5.0,5.0]","sigmaF[1,0.3,15.0]","alphaF[2.0,1.2,3.5]",'nF[3,-5,5]',"sigmaF_2[2.0,0.5,6.0]","sosF[1,0.5,5.0]",
-#    "acmsP[60.,50.,80.]","betaP[0.04,0.01,0.06]","gammaP[0.1, -0.1, 1]","peakP[90.0]",
-#    "acmsF[60.,50.,80.]","betaF[0.04,0.01,0.06]","gammaF[0.1, -0.1, 1]","peakF[90.0]",
-#    ] # from tnp_tamsa
 
 tnpParAltSigFit_addGaus = [
     "meanP[-0.0,-5.0,5.0]","sigmaP[1,0.7,6.0]","alphaP[2.0,1.2,3.5]" ,'nP[3,-5,5]',"sigmaP_2[1.5,0.5,6.0]","sosP[1,0.5,5.0]",

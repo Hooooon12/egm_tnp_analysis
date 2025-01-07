@@ -6,7 +6,7 @@ import argparse
 
 parser = argparse.ArgumentParser(description='option')
 parser.add_argument('-e', dest='eras', nargs='+') # take args as a list, return error when there is no arg
-parser.add_argument('-c', dest='configs', nargs='+', choices=['ID','Trig']) # take args as a list, return error when there is no arg
+parser.add_argument('-c', dest='configs', nargs='+') # take args as a list, return error when there is no arg
 parser.add_argument('-f', dest='flags', nargs='+') # take args as a list, return error when there is no arg # passingCutBasedTight94XV2
 args = parser.parse_args()
 
@@ -24,7 +24,7 @@ for era in args.eras:
   for config in args.configs:
     for flag in args.flags:
 
-      if (config=='ID' and 'HLT' in flag) or (config=='Trig' and 'HLT' not in flag):
+      if ('ID' in config and 'HLT' in flag) or ('Trig' in config and 'HLT' not in flag):
         print "[!!WARNING!!] Config and flag doesn't match;"
         print "[!!WARNING!!] Config:",config,"// flag:",flag
         print "[!!WARNING!!] pass ..."
